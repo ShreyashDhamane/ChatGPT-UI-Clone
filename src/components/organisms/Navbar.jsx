@@ -10,7 +10,7 @@ import {
 import { noAuthUpSell, userImage } from "../../assets/images";
 import AuthButton from "../atoms/Button/LoginButton";
 import SuggestionButton from "../atoms/Button/SuggestionButton";
-import Icon from "../atoms/icon/Icon";
+import Icon from "../atoms/Icon/Icon";
 import ResponsiveIcon from "../atoms/Icon/ResponsiveIcon/ResponsiveIcon";
 
 const Navbar = ({
