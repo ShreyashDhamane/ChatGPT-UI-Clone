@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+@layer components {
+  .navbar-button-container {
+    @apply max-h-[40px] hover:bg-gray-200 hover:bg-opacity-15 rounded-lg;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #303030;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #36454f;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb:hover {
+  cursor: default;
+}
+
+/* For WebKit browsers */
+#main-input:hover::-webkit-scrollbar-thumb {
+  background: #565656; /* Your hover color */
+}
