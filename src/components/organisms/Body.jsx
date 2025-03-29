@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   attachment,
   bulb,
@@ -22,7 +23,10 @@ const Body = ({
   messages,
   setMessages, // Function to update messages state (if needed in the future)
 }) => {
+  const [isMessageStreaming, setIsMessageStreaming] = useState(false); // State to track if a message is being streamed
   const handleOnMessageSend = async () => {
+    // Check if the query is empty
+    if (isMessageStreaming) return; // Prevent sending a new message while streaming
     if (!query.trim()) return; // Prevent sending empty messages
     if (!hasUserInteracted) {
       setHasUserInteracted(true);
@@ -41,7 +45,7 @@ const Body = ({
       paragraphLowerBound: 3,
       paragraphUpperBound: 7,
     });
-
+    setIsMessageStreaming(true); // Set streaming state to true
     // Add placeholder
     setMessages((prev) => [
       ...prev,
@@ -65,10 +69,12 @@ const Body = ({
         return newMessages;
       });
     }
+
+    setIsMessageStreaming(false); // Set streaming state to false
   };
 
   return (
-    <section className="flex-1 flex flex-col justify-center items-center w-full px-4">
+    <section className="flex-1 flex flex-col justify-center items-center w-full px-4 max-w-[736px]">
       {!hasUserInteracted && (
         <div className="flex-1 flex flex-col justify-end items-center z-0">
           <h1 className="text-white text-3xl font-semibold text-center pb-5 leading-none">
@@ -77,7 +83,7 @@ const Body = ({
         </div>
       )}
       <div
-        className={`flex-1 w-full max-w-[768px] flex flex-col-reverse xs:flex-col justify-between ${
+        className={`flex-1 w-full max-w-[736px] flex flex-col-reverse xs:flex-col justify-between ${
           hasUserInteracted ? "xs:justify-end" : "xs:justify-start "
         } `}
       >
@@ -97,7 +103,7 @@ const Body = ({
               };
 
               return (
-                <div className="w-full flex flex-col">
+                <div className="w-full flex flex-col max-w-[736px]">
                   {message.isSenderUser ? (
                     <div className="flex flex-col justify-center items-end group">
                       <div className="max-w-[75%]">
